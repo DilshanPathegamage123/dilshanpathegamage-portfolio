@@ -11006,14 +11006,14 @@ h5,
 }
 .owl-carousel.home-slider {
   position: relative;
-  height: 750px;
+  min-height: 750px;
   z-index: 0;
 }
 .owl-carousel.home-slider .slider-item {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 750px;
+  min-height: 750px;
   position: relative;
   z-index: 0;
 }
@@ -11032,7 +11032,7 @@ h5,
   opacity: 0;
 }
 .owl-carousel.home-slider .slider-item .slider-text {
-  height: 750px;
+  min-height: 750px;
   z-index: 0;
 }
 @media (max-width: 991.98px) {
@@ -12716,4 +12716,20 @@ textarea.form-control {
   font-size: 15px;
   font-weight: 500;
   color: #000;
+}
+
+#home-section {
+  overflow: auto;
+  position: relative; /* Or ensure proper handling of absolute/fixed positioning */
+  max-height: none; /* Or remove the property if not necessary */
+  height: auto; /* Instead of 100vh; allows content to define height */
+  min-height: 100vh; /* Ensures section is at least as tall as the viewport */
+  overflow-y: auto;
+  z-index: 1;
+}
+
+body,
+html {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Ensure vertical scrolling */
 }
