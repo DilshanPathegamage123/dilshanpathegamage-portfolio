@@ -95,7 +95,7 @@
       <div class="home-slider owl-carousel">
         <div class="slider-item">
           <div class="overlay"></div>
-          <div class="container">
+          <div class="container"> 
             <div
               class="row d-md-flex no-gutters slider-text align-items-end justify-content-end"
               data-scrollax-parent="true"
@@ -2478,6 +2478,30 @@
             });
           });
         </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const homeSection = document.querySelector('#home-section');
+    let startY = 0;
+
+    homeSection.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].pageY;
+    });
+
+    homeSection.addEventListener('touchmove', (e) => {
+      const moveY = e.touches[0].pageY;
+      const distanceY = startY - moveY;
+      
+      if (distanceY > 0) {
+        // User is swiping up
+        window.scrollBy(0, distanceY);
+      } else {
+        // User is swiping down
+        window.scrollBy(0, distanceY);
+      }
+    });
+  });
+</script>
       </body>
     </html>
   </body>
