@@ -12729,3 +12729,8 @@ html {
   overflow-x: hidden; /* Prevent horizontal scrolling */
   overflow-y: auto; /* Ensure vertical scrolling */
 }
+
+/* .mainImage {
+  height: 100px;
+  background-color: #0056b3;
+} */
