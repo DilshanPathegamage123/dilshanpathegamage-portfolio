@@ -16,6 +16,7 @@ const ROOT = path.resolve(__dirname, "..");
 const IMG = path.join(ROOT, "images");
 const MY = path.join(ROOT, "my_images "); // NOTE: trailing space in folder name
 const ML = path.join(ROOT, "ml_project_images");
+const RESEARCH = path.join(ROOT, "research_project_images");
 const OUT = path.join(ROOT, "src/assets/images");
 
 /** @type {{src: string, out: string, width: number, quality: number}[]} */
@@ -68,13 +69,35 @@ const manifest = [
   { src: path.join(IMG, "SimilifyImg4.PNG"), out: "projects/similify/g4.webp", width: 1400, quality: 74 },
 
   // Tourist Arrivals ML
-  { src: path.join(ML, "shap_summary_final.png"), out: "projects/tourist-arrivals-ml/cover.webp", width: 1200, quality: 82 },
-  { src: path.join(ML, "rf_feature_importance.png"), out: "projects/tourist-arrivals-ml/g1.webp", width: 1400, quality: 82 },
-  { src: path.join(ML, "shap_importance_final.png"), out: "projects/tourist-arrivals-ml/g2.webp", width: 1400, quality: 82 },
-  { src: path.join(ML, "shap_waterfall_sample.png"), out: "projects/tourist-arrivals-ml/g3.webp", width: 1400, quality: 82 },
-  { src: path.join(ML, "shap_dependence_Lag_1_Month.png"), out: "projects/tourist-arrivals-ml/g4.webp", width: 1400, quality: 82 },
-  { src: path.join(ML, "shap_dependence_Growth_3M.png"), out: "projects/tourist-arrivals-ml/g5.webp", width: 1400, quality: 82 },
-  { src: path.join(ML, "shap_dependence_Market_Share.png"), out: "projects/tourist-arrivals-ml/g6.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "dashboard_image.png"), out: "projects/tourist-arrivals-ml/cover.webp", width: 1400, quality: 80 },
+  { src: path.join(ML, "shap_summary_final.png"), out: "projects/tourist-arrivals-ml/g1.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "rf_feature_importance.png"), out: "projects/tourist-arrivals-ml/g2.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "shap_importance_final.png"), out: "projects/tourist-arrivals-ml/g3.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "shap_waterfall_sample.png"), out: "projects/tourist-arrivals-ml/g4.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "shap_dependence_Lag_1_Month.png"), out: "projects/tourist-arrivals-ml/g5.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "shap_dependence_Growth_3M.png"), out: "projects/tourist-arrivals-ml/g6.webp", width: 1400, quality: 82 },
+  { src: path.join(ML, "shap_dependence_Market_Share.png"), out: "projects/tourist-arrivals-ml/g7.webp", width: 1400, quality: 82 },
+
+  // Final Year Research
+  {
+    src: path.join(RESEARCH, "55_Quadramind FYP Poster.png"),
+    out: "projects/final-year-research/cover.webp",
+    width: 900,
+    quality: 78,
+  },
+  {
+    // Full-resolution poster for the modal gallery, so the dense text stays legible when enlarged.
+    src: path.join(RESEARCH, "55_Quadramind FYP Poster.png"),
+    out: "projects/final-year-research/g1.webp",
+    width: 1600,
+    quality: 85,
+  },
+  {
+    src: path.join(RESEARCH, "WhatsApp Image 2026-08-11 at 20.59.53.jpeg"),
+    out: "projects/final-year-research/g2.webp",
+    width: 1200,
+    quality: 78,
+  },
 ];
 
 async function run() {

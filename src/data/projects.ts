@@ -43,6 +43,11 @@ import mlG3 from "../assets/images/projects/tourist-arrivals-ml/g3.webp";
 import mlG4 from "../assets/images/projects/tourist-arrivals-ml/g4.webp";
 import mlG5 from "../assets/images/projects/tourist-arrivals-ml/g5.webp";
 import mlG6 from "../assets/images/projects/tourist-arrivals-ml/g6.webp";
+import mlG7 from "../assets/images/projects/tourist-arrivals-ml/g7.webp";
+
+import fyrCover from "../assets/images/projects/final-year-research/cover.webp";
+import fyrG1 from "../assets/images/projects/final-year-research/g1.webp";
+import fyrG2 from "../assets/images/projects/final-year-research/g2.webp";
 
 const GITHUB_PROFILE = "https://github.com/DilshanPathegamage123";
 
@@ -61,9 +66,10 @@ export const projects: Project[] = [
       "Validated the simulator against hardware, confirming cycle-accurate results.",
     ],
     tech: ["Python", "System Verilog", "DNN Workloads", "FPGA Simulation"],
+    cover: fyrCover,
+    gallery: [fyrG1, fyrG2],
     links: [{ label: "GitHub Profile", href: GITHUB_PROFILE }],
     fromCv: true,
-    placeholder: true,
   },
   {
     slug: "tourist-arrivals-ml",
@@ -92,7 +98,7 @@ export const projects: Project[] = [
     ],
     tech: ["Python", "Pandas", "NumPy", "Scikit-learn", "SHAP", "Matplotlib", "Time-Series Forecasting"],
     cover: mlCover,
-    gallery: [mlG1, mlG2, mlG3, mlG4, mlG5, mlG6],
+    gallery: [mlG1, mlG2, mlG3, mlG4, mlG5, mlG6, mlG7],
     links: [{ label: "GitHub Profile", href: GITHUB_PROFILE }],
     fromCv: true,
   },

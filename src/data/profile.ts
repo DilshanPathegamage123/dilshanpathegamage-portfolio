@@ -9,9 +9,9 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/dilshan-pathegamage-50707225a/",
   resumeUrl: "/dilshan-pathegamage-cv.pdf",
 
-  heroHeadline: "Full-stack software engineer, building products that ship.",
+  heroHeadline: "Full-stack software engineer, turning ideas into products that ship.",
   heroLede:
-    "I hold a BSc (Hons) in Information Technology from the Faculty of Information Technology, University of Moratuwa. I build web and mobile applications with the MERN stack, Flutter, and ASP.NET Core — with hands-on experience shipping AI-integrated features and cloud deployments.",
+    "I hold a BSc (Hons) in Information Technology from the Faculty of Information Technology, University of Moratuwa. I build web and mobile applications with the MERN stack, Flutter, and ASP.NET Core - with hands-on experience shipping AI-integrated features and cloud deployments.",
   heroExperienceLine: "3+ years of hands-on software development experience.",
   heroFocusAreas: ["Full-Stack Development", "AI & LLM Integration", "Cloud & DevOps"],
 
@@ -20,7 +20,7 @@ export const profile = {
   currentSince: "Dec 2025",
 
   aboutBio:
-    "I'm a full-stack software engineer passionate about practical problem-solving — I combine adaptability across web, mobile, cloud, and AI to build reliable, maintainable solutions that hold up in production, not just in a demo.",
+    "I'm a full-stack software engineer who enjoys turning ideas into practical, production-ready solutions. I work across web, mobile, cloud, and AI, with a focus on building reliable and maintainable products.",
 };
 
 export const education = {
@@ -28,5 +28,5 @@ export const education = {
   institution: "University of Moratuwa",
   faculty: "Faculty of Information Technology",
   start: "Jun 2022",
-  end: "Jul 2026",
+  end: "Aug 2026",
 };
