@@ -99,7 +99,7 @@ export function Contact() {
             <div className="form-note" role="status" aria-live="polite">
               {status === "success" && "Message sent — thanks for reaching out, I'll reply soon."}
               {status === "error" && "Something went wrong. Please try emailing me directly instead."}
-              {(status === "idle" || status === "sending") && "Sent directly to my inbox — no backend required."}
+              {(status === "idle" || status === "sending") && "Sent directly to my inbox."}
             </div>
           </form>
         </Reveal>
