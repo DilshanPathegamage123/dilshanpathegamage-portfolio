@@ -15,18 +15,25 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     ...(project.video ? [{ type: "video" as const, src: project.video }] : []),
   ];
 
+  const mediaCount = media.length;
+  const goPrev = () => setActiveIndex((i) => (i - 1 + mediaCount) % mediaCount);
+  const goNext = () => setActiveIndex((i) => (i + 1) % mediaCount);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft" && mediaCount > 1) goPrev();
+      if (e.key === "ArrowRight" && mediaCount > 1) goNext();
     }
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [onClose]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onClose, mediaCount]);
 
   const active = media[activeIndex];
 
@@ -46,9 +53,19 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             <div className="modal-gallery">
               <div className="modal-gallery-main">
                 {active.type === "video" ? (
-                  <video controls preload="none" src={active.src} />
+                  <video controls playsInline preload="none" src={active.src} />
                 ) : (
                   <img src={active.src} alt={`${project.title} screenshot ${activeIndex + 1}`} />
+                )}
+                {mediaCount > 1 && (
+                  <>
+                    <button type="button" className="gallery-nav gallery-nav-prev" onClick={goPrev} aria-label="Previous image">
+                      ‹
+                    </button>
+                    <button type="button" className="gallery-nav gallery-nav-next" onClick={goNext} aria-label="Next image">
+                      ›
+                    </button>
+                  </>
                 )}
               </div>
               {media.length > 1 && (
@@ -80,6 +97,25 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <p key={para}>{para}</p>
             ))}
           </div>
+
+          {project.sections?.map((section) => (
+            <div className="modal-rich-section" key={section.heading}>
+              <h3>
+                {section.icon && <span className="modal-rich-icon">{section.icon}</span>}
+                {section.heading}
+              </h3>
+              {section.paragraphs?.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+              {section.bullets && (
+                <ul>
+                  {section.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))}
 
           {project.highlights && (
             <div className="modal-section">

@@ -51,30 +51,94 @@ import fyrG2 from "../assets/images/projects/final-year-research/g2.webp";
 
 const GITHUB_PROFILE = "https://github.com/DilshanPathegamage123";
 
-// Projects are ordered to match the CV first, then site-only projects follow.
 export const projects: Project[] = [
   {
     slug: "final-year-research",
-    title: "Exploring Hardware-Software Codesign of Spatial Deep Learning Hardware Accelerators",
+    title: "Exploring Hardware-Software Co-design of Spatial Deep Learning Hardware Accelerators",
     category: "Research Project",
-    dateLabel: "Final Year Research · Group Project",
+    dateLabel: "Final Year Research · Team QuadraMind",
     summary:
-      "A cycle-accurate hardware-software co-design simulator for systolic-array DNN accelerators.",
+      "A cycle-accurate, hardware-verified simulator framework for systolic-array DNN accelerators.",
     description: [
-      "Developed a cycle-accurate hardware-software co-design simulator framework for systolic array-based DNN accelerators, addressing critical performance bottlenecks in DNN execution.",
-      "Researched and designed the compute and data delivery module of the simulator, exploring loop optimizations, memory management schemes, and dataflow strategies to improve accelerator performance.",
-      "Validated the simulator against hardware, confirming cycle-accurate results.",
+      "Deep learning workloads are heavy on both computation and data movement, so running them on general-purpose processors is inefficient — and with Moore's Law slowing down, the field has moved toward specialized spatial accelerators like systolic arrays. The trouble is that the simulators used to design these accelerators hard-wire most of the important architectural choices. Dataflow, memory layout, and how data gets delivered across the array are usually studied separately, so designers can't see how they interact or find the best combination for a given workload.",
+      "As Team QuadraMind, we designed and validated a cycle-accurate, hardware-verified RTL simulator framework for systolic-array-based DNN accelerators that makes these architectural choices fully adjustable and measurable, in both single-DNN and multi-DNN settings — and demonstrated it live on real FPGA hardware.",
     ],
-    tech: ["Python", "System Verilog", "DNN Workloads", "FPGA Simulation"],
+    sections: [
+      {
+        heading: "My contribution — Compute & Data Delivery module",
+        icon: "🧠",
+        paragraphs: [
+          "My work covered the core of the accelerator: the systolic array compute units, the data fetchers, the interconnects, and the off-chip memory implementation that feeds them. I made three hardware knobs independently selectable, turning them into real, measurable control signals rather than software settings:",
+        ],
+        bullets: [
+          "Stationary scheme — Output, Weight, or Input Stationary",
+          "Off-chip memory layout — Channel, Row, or Column major",
+          "Interconnect casting — Unicast, Multicast, or Hybrid",
+        ],
+      },
+      {
+        heading: "What the numbers showed",
+        icon: "📊",
+        bullets: [
+          "Stationary scheme alone moved a single layer's execution time from ~5,200 cycles to 153,738 — a Weight-Stationary array re-fetches its window on every invocation.",
+          "Memory layout doesn't change how much data moves — all three layouts move the same 1,836 AXI beats — but it changes how it's requested: Channel-major issues 138 read bursts vs. 1,794 for the others, ~13× fewer requests and ~1.86× faster.",
+          "Casting matters even more: Multicast moved 1,836 beats where Unicast moved 20,736 for the same layer — up to an 11× swing in off-chip traffic from one knob alone.",
+        ],
+        paragraphs: [
+          "I also implemented the off-chip memory path and AXI-based data delivery tying the compute array to DRAM, and derived an analytical model — cycles = 3 × read requests + 2 × data beats + compute — that matched the measured RTL exactly, scoring the full 27-point design space in ~1.1ms instead of running RTL simulation for every point. This became one of the backbone modules the rest of the team built on top of.",
+        ],
+      },
+      {
+        heading: "The rest of the framework",
+        icon: "🧩",
+        bullets: [
+          "Module 2 — Memory Management: a stamp-based static tagless scheme benchmarked against a dynamic page-table baseline, modelling bank conflicts and memory-side stalls cycle-by-cycle.",
+          "Module 3 — Multi-DNN Scheduler: 14 scheduling policies — classical OS-style schedulers plus published DNN schedulers like AI-MT, BATCH-DNN, and BATCH-DNN++ — compared on one fixed accelerator, with a design-time chooser naming the best policy in milliseconds.",
+          "Module 4 — Loop Optimization / Mapper: a gradient-descent DNN compiler finding near-optimal loop orderings in ~15 evaluations instead of exhaustively searching 720 arrangements per layer, validated on 7 real CNN architectures.",
+        ],
+      },
+      {
+        heading: "Verification",
+        icon: "✅",
+        paragraphs: [
+          "Two independent validation flows, each answering a different question. Every configuration was checked against a TensorFlow golden reference for functional correctness — worst-case error 0.0499%, across every stationary scheme, layout, casting mode, memory scheme, and bank count. And a selected design point was prototyped on a Xilinx Zynq ZedBoard FPGA and demonstrated live with two concurrent DNNs on real webcam input, confirming the RTL is genuinely synthesizable and correct under real timing, memory, and I/O — not just in a simulator.",
+        ],
+      },
+      {
+        heading: "Team & supervisors",
+        paragraphs: [
+          "Built with teammates B.H.L.M. Amarasena, D.A.N.M. Premalal and C.J. Abeygunawardana as Team QuadraMind, under the supervision of R.A.D.M.P. Ranawaka and B.H. Sudantha (University of Moratuwa) and Prof. Mongkol Ekpanyapong (Asian Institute of Technology, Thailand). With the framework complete, the next step is taking this work toward academic publication.",
+        ],
+      },
+    ],
+    metrics: [
+      // { label: "Configs verified", value: "27/27" },
+      // { label: "Worst-case error", value: "0.0499%" },
+      // { label: "Model vs. RTL speed", value: "~100,000×" },
+    ],
+    tech: [
+      "SystemVerilog",
+      "Python",
+      "TensorFlow",
+      "cocotb",
+      "Xilinx Vivado",
+      "Zynq ZedBoard FPGA",
+      "Linux",
+    ],
     cover: fyrCover,
-    gallery: [fyrG1, fyrG2],
-    links: [{ label: "GitHub Profile", href: GITHUB_PROFILE }],
+    gallery: [fyrG2],
+    links: [
+      {
+        label: "Project Presentation",
+        href: "https://www.canva.com/design/DAHRxVye39M/1xdIbwkzAANdGwS8VCRWhw/view?utm_content=DAHRxVye39M&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha0308644be",
+      },
+    ],
     fromCv: true,
   },
   {
     slug: "tourist-arrivals-ml",
     title: "Sri Lanka Foreign Tourist Arrivals Prediction Using Machine Learning",
-    category: "Machine Learning",
+    category: "Machine Learning Model",
     dateLabel: "Feb 2026",
     summary:
       "A Random Forest forecasting system predicting Sri Lanka's monthly tourist arrivals with 92% R² accuracy.",
@@ -99,7 +163,7 @@ export const projects: Project[] = [
     tech: ["Python", "Pandas", "NumPy", "Scikit-learn", "SHAP", "Matplotlib", "Time-Series Forecasting"],
     cover: mlCover,
     gallery: [mlG1, mlG2, mlG3, mlG4, mlG5, mlG6, mlG7],
-    links: [{ label: "GitHub Profile", href: GITHUB_PROFILE }],
+    links: [{ label: "GitHub Repository", href: "https://github.com/DilshanPathegamage123/SriLanka_Tourism_Prediction_ML_Project" }],
     fromCv: true,
   },
   // {
@@ -126,15 +190,15 @@ export const projects: Project[] = [
     summary:
       "Train and bus e-ticketing platform with live tracking, scheduling, and online payments.",
     description: [
-      "A public-transport-focused web application covering train and bus search, seat reservation with online card payments, reservation changes, cancellation with refund, live vehicle tracking, emergency updates, scheduling, vehicle/driver registration, and vehicle income prediction — addressing reliability and convenience challenges in Sri Lanka's public transport system.",
-      "I developed the search functionality for trains and buses, seat reservation based on availability and preference, reservation changes and cancellations with refunds, and passenger profile management, along with the UI/UX design for these modules.",
+      "The public transport-focused web application includes searching for trains and buses, reserving seats on trains and buses by making online card payments, changing reservations, canceling reservations with a refund, live vehicle tracking, emergency updates, scheduling trains and buses, registering vehicles and drivers, and vehicle income prediction. This addresses the challenges in Sri Lanka's public transportation system, using a user-friendly web application that enhances the reliability, convenience, and efficiency of commuting.",
+      "In this project, I have developed the functionalities for searching for trains and buses, reserving seats in trains and buses according to availability and user preference, changing and canceling reservations with refund and managing passenger profiles.",
     ],
     tech: ["React", "TypeScript", "ASP.NET", "MSSQL", "Bootstrap", "Azure Cloud"],
     cover: ticketmateCover,
     gallery: [ticketmateG1, ticketmateG2, ticketmateG3, ticketmateG4, ticketmateG5, ticketmateG6, ticketmateG7],
     links: [
-      { label: "Frontend Repository", href: "https://github.com/SILVA-HSL/Software-Project-PTES" },
-      { label: "Backend Repository", href: "https://github.com/SILVA-HSL/Software-Project-PTES-backend/tree/main" },
+      { label: "Frontend Repository", href: "https://github.com/DilshanPathegamage123/Software-Project-PTES" },
+      { label: "Backend Repository", href: "https://github.com/DilshanPathegamage123/Software-Project-PTES-backend" },
       {
         label: "Figma Designs",
         href: "https://www.figma.com/design/pAHFZTPecjf4PYd8dMqPgT/Project-designs?node-id=0-1&t=v2itQInCq76u7Njr-1",
@@ -177,7 +241,7 @@ export const projects: Project[] = [
     category: "Web Application",
     summary: "A chatbot built on the Google Gemini API for fast, natural-language answers.",
     description: [
-      "NeurA is a chatbot that leverages advanced natural language processing to provide quick, accurate answers. The frontend is built with React and Bootstrap, while the backend integrates with the Google Gemini API for AI-driven responses.",
+      "NeurA is a chatbot developed using React JS and the Google Gemini API. It leverages advanced natural language processing to provide quick, accurate answers. The frontend is built with React JS and Bootstrap, while the backend integrates with the Google Gemini API for powerful AI-driven responses — with more performance optimizations and features planned as it keeps evolving.",
     ],
     tech: ["React", "Bootstrap", "Google Gemini API"],
     cover: neuraCover,
@@ -194,7 +258,7 @@ export const projects: Project[] = [
     category: "Web Application",
     summary: "Finds visually similar images from a large image set with an OpenCV-powered search.",
     description: [
-      "SimiliFy lets users upload a large image set and search for similar images by uploading a single reference image. The system finds and displays similar matches along with their file names — an efficient image-based search solution.",
+      "SimiliFy enables users to upload a large image set and search for similar images by uploading a single image. The system then finds and displays similar images along with their file names, providing an efficient image-based search solution.",
     ],
     tech: ["React", "ASP.NET", "Bootstrap", "OpenCV"],
     cover: similifyCover,
@@ -212,8 +276,10 @@ export const projects: Project[] = [
     dateLabel: "Team Lead · Group Project",
     summary: "A micro-controller-driven machine that prints full-colour artwork directly onto a wall.",
     description: [
-      "Led a team of five in building a system that turns a digital image into full-colour wall art up to 1m × 1m — no framing or printing required. The machine runs on two tracks powered by two stepper motors, spraying ink through nozzles to reproduce the input image directly on the wall (or on fabric and posters), controlled by height/width parameters entered from a computer.",
-      "The goal was to make meaningful, personal wall art accessible without the cost of individually printing and framing each piece — and the team is continuing to refine the mechanism for smoother, more complex artwork.",
+      "With great delight, I, as the leader of this exceptional team, along with my talented group members Mr. Supun Jayathilaka, Mr. Mohomed Arkam, Miss. Lahiruni Malshika, and Miss. Chamodi Liyanage, take immense pride in leading this groundbreaking project.",
+      "Life is not all about working, earning, and studying — life is meant to be beautiful. As human beings, we need a balanced life between career, family, friends, and other social events, and art is part of that balance. Wall art is something more important than photo albums or standing frames: making your precious photographs into wall art is one of the best ways to get your art visible in your home or office, wherever you want it.",
+      "The designed wall art system turns your precious images into wall art up to 1m × 1m in size, so people no longer need to spend money individually printing and framing each image they'd like on their wall.",
+      "The system creates the image on the wall using different colours: the height and width are entered through a computer, and the design is painted onto the wall by spraying ink through nozzles. The machine runs on two tracks powered by two stepper motors, and can also be used for fabric art and posters. We're continuing to develop this machine to make it smoother and capable of more complex artwork.",
     ],
     tech: ["Arduino", "Stepper Motors", "CNC"],
     cover: wallArtCover,
@@ -228,7 +294,7 @@ export const projects: Project[] = [
     category: "UI Design & Prototype",
     summary: "A cryptocurrency exchange UI design and interactive prototype, built from scratch.",
     description: [
-      "Our main intention was to build a cryptocurrency exchange website UI design and prototype from scratch. The top priority requirements were to let users trade both cryptocurrencies and fiat money, top up their wallets, and withdraw funds, while ensuring real-time data updates and interface customization. Designing this exchange became one of our most interesting projects.",
+      "Our main intention was to build a cryptocurrency exchange website ui design and prototype from scratch. The top priority requirements were to provide users with the ability to trade both cryptocurrencies and fiat money, replenish their wallets, and withdraw funds. We also needed to ensure data real-time updates and interface customization. The creation of this cryptocurrency exchange became one of our most interesting projects.",
     ],
     tech: ["Figma", "UI/UX Design"],
     cover: cryptoxCover,
@@ -249,14 +315,24 @@ export const projects: Project[] = [
     dateLabel: "Ongoing Project",
     summary: "An affordable performance-tracking app for coaches and athletes in schools and universities.",
     description: [
-      "Coaches of school, college, and university athletes often lack an affordable way to track and record each athlete's progress — the advanced systems available to national and international athletes aren't feasible for educational institutions. CoachMe was designed to close that gap: an affordable, effective performance-tracking app that gives coaches the tools to provide personalized guidance and helps athletes reach their full potential.",
+      "In the exciting world of track and field athletics, a common challenge has been holding back both athletes and coaches from reaching their full potential. However, there's a roadblock on this journey — coaches struggle to track and understand each athlete's performance, making it tough to guide them effectively.",
+      "The world of track and field isn't just about running, jumping, and throwing — it's about growth, improvement, and achieving personal bests. However, here's where the challenge lies: coaches lack a reliable way to keep a record of each athlete's progress and accomplishments. This missing piece of the puzzle means coaches can't create tailored workout plans that help athletes shine. It's like having a map without directions.",
+      "This issue isn't small, especially when coaches are looking after a bunch of athletes in schools, high schools, and universities. Imagine trying to keep an eye on everyone in a busy stadium — it's not an easy task. As a result, even athletes with incredible potential might go unnoticed.",
+      "Our motivation comes from a real experience of one of our team members. As a school athlete, his progress was slow because his coach couldn't track his performance effectively. This wasn't the coach's fault; managing many students without proper tools is tough.",
+      "In schools, colleges, and universities, there are no affordable systems to track and manage athletes' progress. While national and international athletes have access to expensive, advanced systems, these are not feasible for educational institutions.",
+      "To solve this problem, we developed CoachMe, a mobile app designed to provide affordable and effective performance tracking for coaches and athletes. Our goal is to help athletes reach their full potential by giving coaches the tools they need to provide personalized guidance. (Only the UI/UX design and prototype are complete at this stage, with the app development in progress.)",
     ],
     highlights: [
-      "Individual athlete profiles with real-time performance tracking",
-      "Group management and analysis for coaches handling multiple athletes",
-      "Sleep and nutrition tracking alongside a goal-oriented approach",
-      "Performance analysis and insights for data-driven coaching decisions",
-      "Dynamic workout plan creation and enhanced coach-athlete collaboration",
+      "Individual Athlete Profiles",
+      "Real-time Performance Tracking",
+      "Group Management and Analysis",
+      "Sleep and Nutrition Tracking",
+      "Goal-oriented Approach",
+      "Performance Analysis and Insights",
+      "Enhanced Coach-Athlete Collaboration",
+      "Dynamic Workout Plan Creation",
+      "Holistic Performance Analysis",
+      "Data-driven Decision Making",
     ],
     tech: ["Figma", "UI/UX Design"],
     cover: coachmeCover,

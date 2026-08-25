@@ -1071,6 +1071,7 @@ button {
   margin-top: 24px;
 }
 .modal-gallery-main {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1086,6 +1087,45 @@ button {
 }
 .modal-gallery-main video {
   background: #000;
+}
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: blur(4px);
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+.modal-gallery-main:hover .gallery-nav,
+.gallery-nav:focus-visible {
+  opacity: 1;
+}
+.gallery-nav:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.gallery-nav-prev {
+  left: 12px;
+}
+.gallery-nav-next {
+  right: 12px;
+}
+@media (hover: none) {
+  .gallery-nav {
+    opacity: 1;
+  }
 }
 .modal-gallery-strip {
   display: flex;
@@ -1156,6 +1196,45 @@ button {
 }
 .modal-section ul li {
   margin-bottom: 7px;
+}
+.modal-rich-section {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.modal-rich-section h3 {
+  font-size: 16.5px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.modal-rich-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.modal-rich-section p {
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+.modal-rich-section ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 14.5px;
+}
+.modal-rich-section ul li {
+  margin-bottom: 7px;
+}
+.modal-rich-section ul + p {
+  margin-top: 14px;
 }
 .modal-tech {
   margin-top: 12px;

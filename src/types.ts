@@ -19,6 +19,13 @@ export interface ProjectLink {
   href: string;
 }
 
+export interface ProjectSection {
+  heading: string;
+  icon?: string;
+  paragraphs?: string[];
+  bullets?: string[];
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -26,6 +33,7 @@ export interface Project {
   dateLabel?: string;
   summary: string;
   description: string[];
+  sections?: ProjectSection[];
   highlights?: string[];
   metrics?: { label: string; value: string }[];
   tech: string[];
