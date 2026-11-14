@@ -12,8 +12,8 @@ export const profile = {
   heroHeadline: "Full-stack software engineer, turning ideas into products that ship.",
   heroLede:
     "I hold a BSc (Hons) in Information Technology from the Faculty of Information Technology, University of Moratuwa. I build web and mobile applications with the MERN stack, Flutter, and ASP.NET Core - with hands-on experience shipping AI-integrated features and cloud deployments.",
-  heroExperienceLine: "3+ years of hands-on software development experience.",
-  heroFocusAreas: ["Full-Stack Development", "AI & LLM Integration", "Cloud & DevOps"],
+  heroExperienceLine: "Around 2 years of professional experience | Software development experience since 2022",
+  heroFocusAreas: ["Full-Stack & Mobile Development", "AI & LLM Integration", "Cloud & DevOps"],
 
   currentRole: "Trainee Software Engineer",
   currentCompany: "Virstack Pvt Ltd",
