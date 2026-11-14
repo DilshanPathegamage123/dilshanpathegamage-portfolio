@@ -46,10 +46,7 @@ import mlG6 from "../assets/images/projects/tourist-arrivals-ml/g6.webp";
 import mlG7 from "../assets/images/projects/tourist-arrivals-ml/g7.webp";
 
 import fyrCover from "../assets/images/projects/final-year-research/cover.webp";
-import fyrG1 from "../assets/images/projects/final-year-research/g1.webp";
 import fyrG2 from "../assets/images/projects/final-year-research/g2.webp";
-
-const GITHUB_PROFILE = "https://github.com/DilshanPathegamage123";
 
 export const projects: Project[] = [
   {
@@ -178,7 +175,7 @@ export const projects: Project[] = [
   //     "Built career-based recommendations plus prerequisite and automated credit validation on a Prolog knowledge base, with an interactive Python GUI for decision support.",
   //   ],
   //   tech: ["Prolog", "Python", "Tkinter"],
-  //   links: [{ label: "GitHub Profile", href: GITHUB_PROFILE }],
+  //   links: [{ label: "GitHub Profile", href: "https://github.com/DilshanPathegamage123" }],
   //   fromCv: true,
   //   placeholder: true,
   // },
